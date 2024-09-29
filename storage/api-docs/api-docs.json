@@ -1,0 +1,1784 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "U1R API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Register a new user",
+                "operationId": "8e4e3cb7b46126f4696379d3c7eeb4ad",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "first_name",
+                                    "last_name",
+                                    "email",
+                                    "password",
+                                    "password_confirmation"
+                                ],
+                                "properties": {
+                                    "first_name": {},
+                                    "last_name": {},
+                                    "email": {},
+                                    "role": {},
+                                    "password": {},
+                                    "password_confirmation": {}
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User registered successfully"
+                    },
+                    "422": {
+                        "description": "Validation errors"
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login a user",
+                "operationId": "222b2625838e3c57e017987f73598fda",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {},
+                                    "password": {}
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User logged in successfully"
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Logout a user",
+                "operationId": "ad65cbbd4e9f201619eae184a5961a98",
+                "responses": {
+                    "201": {
+                        "description": "User logged out successfully"
+                    }
+                }
+            }
+        },
+        "/api/brands": {
+            "get": {
+                "tags": [
+                    "Brand"
+                ],
+                "summary": "Get Brand List",
+                "operationId": "f21e90c419b63677b2ff881385616e70",
+                "parameters": [
+                    {
+                        "name": "main_category",
+                        "in": "query",
+                        "description": "Main category id"
+                    },
+                    {
+                        "name": "sub_category",
+                        "in": "query",
+                        "description": "Sub category id"
+                    },
+                    {
+                        "name": "category",
+                        "in": "query",
+                        "description": "Category id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get Brands successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Brand"
+                ],
+                "summary": "Create Brand",
+                "operationId": "95935501d2efebee669375d361a79d9d",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {},
+                                    "image": {},
+                                    "is_active": {
+                                        "type": "boolean"
+                                    },
+                                    "main_category_id": {
+                                        "type": "integer"
+                                    },
+                                    "sub_category_id": {
+                                        "type": "integer"
+                                    },
+                                    "category_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Brand created Successfully"
+                    }
+                }
+            }
+        },
+        "/api/brands/{id}": {
+            "get": {
+                "tags": [
+                    "Brand"
+                ],
+                "summary": "Get Brand List",
+                "operationId": "527ef81fb17e8ea644966af7206fdcf5",
+                "responses": {
+                    "200": {
+                        "description": "Get Brand successfully"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Brand"
+                ],
+                "summary": "Update Brand",
+                "operationId": "53622080be3257396c8525fbdc00628a",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {},
+                                    "image": {},
+                                    "is_active": {}
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Brand Updated Successfully"
+                    }
+                }
+            }
+        },
+        "/api/cart-items": {
+            "get": {
+                "tags": [
+                    "Cart Item"
+                ],
+                "summary": "Get Cart Item List",
+                "operationId": "63fa56b649053fa124b057071499021e",
+                "responses": {
+                    "200": {
+                        "description": "Get data successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Cart Item"
+                ],
+                "summary": "Create Cart Item",
+                "operationId": "ab14ae550a9006774835c4287dd279c6",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "product_id",
+                                    "quantity",
+                                    "sub_total"
+                                ],
+                                "properties": {
+                                    "product_id": {
+                                        "type": "integer"
+                                    },
+                                    "product_variant_id": {
+                                        "type": "integer"
+                                    },
+                                    "quantity": {
+                                        "type": "integer"
+                                    },
+                                    "sub_total": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Cart item added Successfully"
+                    }
+                }
+            }
+        },
+        "/api/cart-items/{id}": {
+            "delete": {
+                "tags": [
+                    "Cart Item"
+                ],
+                "summary": "Delete Cart Item",
+                "operationId": "35162ac9f5ed3cc4edb970bba821efba",
+                "responses": {
+                    "200": {
+                        "description": "Cart Item Deleted successfully"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Cart Item"
+                ],
+                "summary": "Update Cart Item",
+                "operationId": "aba26d8c3143e2c5cefce6f27a2aed4c",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "quantity"
+                                ],
+                                "properties": {
+                                    "quantity": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Cart Item Updated Successfully"
+                    }
+                }
+            }
+        },
+        "/api/categories": {
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Get Category List",
+                "operationId": "d2f6531c17cf5e29c0c1f44be77133a1",
+                "parameters": [
+                    {
+                        "name": "main_category",
+                        "in": "query",
+                        "description": "Main category id"
+                    },
+                    {
+                        "name": "sub_category",
+                        "in": "query",
+                        "description": "Sub category id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get Category successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Create Category",
+                "operationId": "520c0a7d7744b9c3ff328738c6106541",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "main_category_id",
+                                    "sub_category_id"
+                                ],
+                                "properties": {
+                                    "name": {},
+                                    "main_category_id": {},
+                                    "sub_category_id": {}
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Category created Successfully"
+                    }
+                }
+            }
+        },
+        "/api/categories/{id}": {
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Get Category By ID",
+                "operationId": "eb82e8305fbdc35b50faac582e878782",
+                "responses": {
+                    "200": {
+                        "description": "Get Category successfully"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Update Category",
+                "operationId": "171091b497a3909ae35f78811f2ce20b",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {},
+                                    "is_active": {}
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Category Updated Successfully"
+                    }
+                }
+            }
+        },
+        "/api/colors": {
+            "get": {
+                "tags": [
+                    "Color"
+                ],
+                "summary": "Get Color List",
+                "operationId": "10fc4e94193fcbdb91530214ca745193",
+                "responses": {
+                    "200": {
+                        "description": "Get Colors successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Color"
+                ],
+                "summary": "Create Color",
+                "operationId": "6e6fecb2cba833c23d9bd1c52ca5fcf5",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {},
+                                    "hex_code": {}
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Color created Successfully"
+                    }
+                }
+            }
+        },
+        "/api/colors/{id}": {
+            "get": {
+                "tags": [
+                    "Color"
+                ],
+                "summary": "Get Color By ID",
+                "operationId": "92a78889dad90e51ceb4f6797aae7b03",
+                "responses": {
+                    "200": {
+                        "description": "Get Color successfully"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Color"
+                ],
+                "summary": "Update Color",
+                "operationId": "658ac3d851c050744b858cca3b40d0ce",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {},
+                                    "hex_code": {},
+                                    "is_active": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Color Updated Successfully"
+                    }
+                }
+            }
+        },
+        "/api/coupons/{store_id}": {
+            "get": {
+                "tags": [
+                    "Coupon"
+                ],
+                "summary": "Get Coupon List with store id",
+                "operationId": "b5118bb26c5e4e09de8b9ae1d7f3ff0d",
+                "responses": {
+                    "200": {
+                        "description": "Get Coupons successfully"
+                    }
+                }
+            }
+        },
+        "/api/coupons": {
+            "post": {
+                "tags": [
+                    "Coupon"
+                ],
+                "summary": "Create Coupon",
+                "operationId": "883d19499db0095a11dba83fb056ff94",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "store_id",
+                                    "name",
+                                    "code",
+                                    "amount",
+                                    "expire_date"
+                                ],
+                                "properties": {
+                                    "store_id": {
+                                        "type": "integer"
+                                    },
+                                    "name": {},
+                                    "code": {},
+                                    "amount": {
+                                        "type": "integer"
+                                    },
+                                    "expire_date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Coupon created Successfully"
+                    }
+                }
+            }
+        },
+        "/api/coupons/check": {
+            "post": {
+                "tags": [
+                    "Coupon"
+                ],
+                "summary": "Check Coupon",
+                "operationId": "6bb2676cc7d9d6b22b9428732810fa19",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "store_id",
+                                    "code"
+                                ],
+                                "properties": {
+                                    "store_id": {
+                                        "type": "integer"
+                                    },
+                                    "code": {}
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Coupon checked Successfully"
+                    }
+                }
+            }
+        },
+        "/api/main-category": {
+            "get": {
+                "tags": [
+                    "Main Category"
+                ],
+                "summary": "Get Main Category List",
+                "operationId": "b053e7100caf1b3f3bb4cc879f189d9e",
+                "responses": {
+                    "200": {
+                        "description": "Get Main Category successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Main Category"
+                ],
+                "summary": "Create Main Category",
+                "operationId": "5db3431da2d9d9e8a3e892500842055b",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {}
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Main Category created Successfully"
+                    }
+                }
+            }
+        },
+        "/api/main-category/{id}": {
+            "get": {
+                "tags": [
+                    "Main Category"
+                ],
+                "summary": "Get Main Category By ID",
+                "operationId": "22c44e30298ec236ed8a6d72e236bc0b",
+                "responses": {
+                    "200": {
+                        "description": "Get Main Category successfully"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Main Category"
+                ],
+                "summary": "Update Main Category",
+                "operationId": "b9443151ca9c3f668a4ca45c4648cb4b",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {},
+                                    "is_active": {}
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Main Category Updated Successfully"
+                    }
+                }
+            }
+        },
+        "/api/orders": {
+            "get": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Get Order List",
+                "operationId": "52e2e0056ce273258998e1545a77a151",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "user id",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "order_status",
+                        "in": "query",
+                        "description": "Order status",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "Pending",
+                                "Confirmed"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "payment_status",
+                        "in": "query",
+                        "description": "Payment status",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "Unpaid",
+                                "Paid",
+                                "PartialPaid"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "shipping_status",
+                        "in": "query",
+                        "description": "Shipping status",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "Processing",
+                                "OnTheWay",
+                                "Delivered",
+                                "Returned"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Get Order List successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Submit Order",
+                "operationId": "69a48b8c7cb177955d5c615348201c4e",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "first_name",
+                                    "last_name",
+                                    "phone_no",
+                                    "city",
+                                    "shipping_address",
+                                    "payment_id"
+                                ],
+                                "properties": {
+                                    "first_name": {},
+                                    "last_name": {},
+                                    "email": {},
+                                    "phone_no": {},
+                                    "district": {},
+                                    "city": {},
+                                    "postal_code": {},
+                                    "shipping_address": {},
+                                    "payment_id": {
+                                        "type": "number"
+                                    },
+                                    "stores": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "store_id": {
+                                                    "type": "integer"
+                                                },
+                                                "shipping_cost": {
+                                                    "type": "integer"
+                                                },
+                                                "discount_type": {},
+                                                "discount": {
+                                                    "type": "integer"
+                                                },
+                                                "total": {
+                                                    "type": "integer"
+                                                },
+                                                "items": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "product_id": {
+                                                                "type": "integer"
+                                                            },
+                                                            "product_variant_id": {
+                                                                "type": "integer"
+                                                            },
+                                                            "quantity": {
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Order submitted Successfully"
+                    }
+                }
+            }
+        },
+        "/api/orders-with-token": {
+            "get": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Get Order List with token",
+                "operationId": "bd7bcdbea5f6553f0fe529dac341f19b",
+                "responses": {
+                    "201": {
+                        "description": "Get Order List with token successfully"
+                    }
+                }
+            }
+        },
+        "/api/orders/{id}": {
+            "patch": {
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Update Order Status",
+                "operationId": "2102145d2d36d19d5fc27c247c3dd421",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "payment_status": {}
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Order updated Successfully"
+                    }
+                }
+            }
+        },
+        "/api/payments": {
+            "post": {
+                "tags": [
+                    "Payment"
+                ],
+                "summary": "Create Payment",
+                "operationId": "5e907b772c6a27dc7dafc6c76a5ffa16",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "type": {},
+                                    "transection_no": {},
+                                    "amount": {
+                                        "type": "integer"
+                                    },
+                                    "status": {}
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Payment created Successfully"
+                    }
+                }
+            }
+        },
+        "/api/payments/{id}": {
+            "get": {
+                "tags": [
+                    "Payment"
+                ],
+                "summary": "Get Payment By ID",
+                "operationId": "30f448f98368b8382bd347740dbb9fab",
+                "responses": {
+                    "200": {
+                        "description": "Get Payment successfully"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Payment"
+                ],
+                "summary": "Update Payment",
+                "operationId": "3f8b0efd784602e0a1d60a628ca0c831",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "status": {}
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Payment Updated Successfully"
+                    }
+                }
+            }
+        },
+        "/api/products": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get Product list",
+                "operationId": "8a8390dc6232a161e105158a556efa18",
+                "parameters": [
+                    {
+                        "name": "store_id",
+                        "in": "query",
+                        "description": "Store Id"
+                    },
+                    {
+                        "name": "brand_id",
+                        "in": "query",
+                        "description": "Brand Id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get Data Successfull"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Add a product",
+                "operationId": "59e7130032df1fa48d49ca988351efae",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "price",
+                                    "cros_out_price",
+                                    "main_category_id",
+                                    "sub_category_id",
+                                    "category_id",
+                                    "brand_id",
+                                    "store_id"
+                                ],
+                                "properties": {
+                                    "name": {},
+                                    "price": {
+                                        "type": "number",
+                                        "format": "double"
+                                    },
+                                    "cros_out_price": {
+                                        "type": "number",
+                                        "format": "double"
+                                    },
+                                    "stock": {
+                                        "type": "integer"
+                                    },
+                                    "description": {},
+                                    "images": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "image": {}
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "main_category_id": {
+                                        "type": "integer"
+                                    },
+                                    "sub_category_id": {
+                                        "type": "integer"
+                                    },
+                                    "category_id": {
+                                        "type": "integer"
+                                    },
+                                    "brand_id": {
+                                        "type": "integer"
+                                    },
+                                    "store_id": {
+                                        "type": "integer"
+                                    },
+                                    "variants": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "color_id": {
+                                                    "type": "integer"
+                                                },
+                                                "size_id": {
+                                                    "type": "integer"
+                                                },
+                                                "stock": {
+                                                    "type": "integer"
+                                                },
+                                                "image": {}
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Product created successfully"
+                    },
+                    "422": {
+                        "description": "Validation errors"
+                    }
+                }
+            }
+        },
+        "/api/products/{id}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get Product with id",
+                "operationId": "63cb35ad009c1a01ef3e6be17473236c",
+                "responses": {
+                    "200": {
+                        "description": "Get Data Successfull"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Update a product",
+                "operationId": "ef1e562bd1840fd6fadf8b1439f6cee5",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "price",
+                                    "cros_out_price",
+                                    "main_category_id",
+                                    "sub_category_id",
+                                    "category_id",
+                                    "brand_id",
+                                    "store_id"
+                                ],
+                                "properties": {
+                                    "name": {},
+                                    "price": {
+                                        "type": "integer"
+                                    },
+                                    "cros_out_price": {
+                                        "type": "integer"
+                                    },
+                                    "stock": {
+                                        "type": "integer"
+                                    },
+                                    "description": {},
+                                    "images": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "image": {}
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "main_category_id": {
+                                        "type": "integer"
+                                    },
+                                    "sub_category_id": {
+                                        "type": "integer"
+                                    },
+                                    "category_id": {
+                                        "type": "integer"
+                                    },
+                                    "brand_id": {
+                                        "type": "integer"
+                                    },
+                                    "store_id": {
+                                        "type": "integer"
+                                    },
+                                    "variants": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "color_id": {
+                                                    "type": "integer"
+                                                },
+                                                "size_id": {
+                                                    "type": "integer"
+                                                },
+                                                "stock": {
+                                                    "type": "integer"
+                                                },
+                                                "image": {}
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Product created successfully"
+                    },
+                    "422": {
+                        "description": "Validation errors"
+                    }
+                }
+            }
+        },
+        "/api/product-variant/{id}": {
+            "get": {
+                "tags": [
+                    "Product Variant"
+                ],
+                "summary": "Get Product variant with id",
+                "operationId": "89c12a9bc05b71f903979bfbe92fa02f",
+                "responses": {
+                    "200": {
+                        "description": "Get Data Successfull"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Product Variant"
+                ],
+                "summary": "Update Product variant stock with id",
+                "operationId": "c6ef9f325be22174693cad01532a7b0c",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "stock"
+                                ],
+                                "properties": {
+                                    "stock": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Product Variant Stock Updated Successfully"
+                    }
+                }
+            }
+        },
+        "/api/sizes": {
+            "get": {
+                "tags": [
+                    "Size"
+                ],
+                "summary": "Get Size List",
+                "operationId": "63f42f29afb89a1b13139a1e5b8e9b85",
+                "responses": {
+                    "200": {
+                        "description": "Get Sizes successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Size"
+                ],
+                "summary": "Create Size",
+                "operationId": "8ea2adf3dd6b399a273f92bd60e8369e",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {}
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Size created Successfully"
+                    }
+                }
+            }
+        },
+        "/api/sizes/{id}": {
+            "get": {
+                "tags": [
+                    "Size"
+                ],
+                "summary": "Get Size By ID",
+                "operationId": "c59180af18472485520c59621ac41471",
+                "responses": {
+                    "200": {
+                        "description": "Get Size successfully"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Size"
+                ],
+                "summary": "Update Size",
+                "operationId": "37f2afb16f718db224563905ae1176ee",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {},
+                                    "is_active": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Size Updated Successfully"
+                    }
+                }
+            }
+        },
+        "/api/stores": {
+            "get": {
+                "tags": [
+                    "Store"
+                ],
+                "summary": "Get Store List",
+                "operationId": "00a4bf77dacf6079a1d399749d61ff7d",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "user id",
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get Store List successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Store"
+                ],
+                "summary": "Create Store",
+                "operationId": "35fe8c582f1a2f8cd59f78ffa22b1a7a",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "city",
+                                    "address"
+                                ],
+                                "properties": {
+                                    "name": {},
+                                    "email": {},
+                                    "phone_no": {},
+                                    "city": {},
+                                    "postal_code": {},
+                                    "address": {},
+                                    "main_categories": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "id": {}
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Order submitted Successfully"
+                    }
+                }
+            }
+        },
+        "/api/stores-by-token": {
+            "get": {
+                "tags": [
+                    "Store"
+                ],
+                "summary": "Get Store List by token",
+                "operationId": "8efab363bc664e554912bdd7b03237e5",
+                "responses": {
+                    "200": {
+                        "description": "Get Store List by token successfully"
+                    }
+                }
+            }
+        },
+        "/api/stores/{id}": {
+            "get": {
+                "tags": [
+                    "Store"
+                ],
+                "summary": "Get Store by id",
+                "operationId": "53c142889cc587d8b1613efda2601309",
+                "responses": {
+                    "200": {
+                        "description": "Get Store Successfully"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Store"
+                ],
+                "summary": "Update Store",
+                "operationId": "14f4e2ad1f8e0c16de817c74353be7f4",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {},
+                                    "email": {},
+                                    "phone_no": {},
+                                    "city": {},
+                                    "postal_code": {},
+                                    "address": {},
+                                    "main_categories": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "id": {}
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Store Updated Successfully"
+                    }
+                }
+            }
+        },
+        "/api/store-orders/{store_id}": {
+            "get": {
+                "tags": [
+                    "Store Order"
+                ],
+                "summary": "Get Store Order List",
+                "operationId": "6fcca2ae102072729f426b0c272efb31",
+                "responses": {
+                    "200": {
+                        "description": "Get Store Order successfully"
+                    }
+                }
+            }
+        },
+        "/api/store-orders/{id}": {
+            "patch": {
+                "tags": [
+                    "Store Order"
+                ],
+                "summary": "Update Stor Order",
+                "operationId": "bbd696335dec633577ea5ac4784e7946",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "shipping_status"
+                                ],
+                                "properties": {
+                                    "shipping_status": {}
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Store Order Updated Successfully"
+                    }
+                }
+            }
+        },
+        "/api/sub-category": {
+            "get": {
+                "tags": [
+                    "Sub Category"
+                ],
+                "summary": "Get Sub Category List",
+                "operationId": "462ace9332f442b92fdf2b57031152c3",
+                "parameters": [
+                    {
+                        "name": "main_category",
+                        "in": "query",
+                        "description": "Main category id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get Sub Category successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Sub Category"
+                ],
+                "summary": "Create Sub Category",
+                "operationId": "8dd73f6fc23986b8728cb4d4e0d7ed7d",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "main_category_id"
+                                ],
+                                "properties": {
+                                    "name": {},
+                                    "main_category_id": {}
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Sub Category created Successfully"
+                    }
+                }
+            }
+        },
+        "/api/sub-category/{id}": {
+            "get": {
+                "tags": [
+                    "Sub Category"
+                ],
+                "summary": "Get Sub Category By ID",
+                "operationId": "93c580a29a1ce6eff569a63a1463eac9",
+                "responses": {
+                    "200": {
+                        "description": "Get Sub Category successfully"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Sub Category"
+                ],
+                "summary": "Update Sub Category",
+                "operationId": "a0764b72d07dccdef4265a71f193c1e0",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {},
+                                    "is_active": {}
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Sub Category Updated Successfully"
+                    }
+                }
+            }
+        },
+        "/api/upload-local": {
+            "post": {
+                "tags": [
+                    "Upload"
+                ],
+                "summary": "Upload into local storage",
+                "operationId": "4d4768d0b7d7e797937a0627d60363c2",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "image"
+                                ],
+                                "properties": {
+                                    "image": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Image uploaded sucessfully"
+                    },
+                    "422": {
+                        "description": "Validation errors"
+                    }
+                }
+            }
+        },
+        "/api/users": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get all user list",
+                "operationId": "d64c69c227bcaa94189f8552f9336c55",
+                "parameters": [
+                    {
+                        "name": "role",
+                        "in": "query",
+                        "description": "user role",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "user",
+                                "seller",
+                                "admin"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get all user info Successfully"
+                    }
+                }
+            }
+        },
+        "/api/profile": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get authenticated user",
+                "operationId": "0ed57baf5e815c7e71688207265bf99b",
+                "responses": {
+                    "200": {
+                        "description": "Get user info Successfully"
+                    }
+                },
+                "security": {
+                    "bearerAuth": {}
+                }
+            },
+            "patch": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Update User",
+                "operationId": "8d657c4de8c480f5191c0271468608af",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "role"
+                                ],
+                                "properties": {
+                                    "first_name": {},
+                                    "last_name": {},
+                                    "image": {},
+                                    "district": {},
+                                    "city": {},
+                                    "postal_code": {},
+                                    "address": {},
+                                    "phone_no": {},
+                                    "role": {},
+                                    "is_active": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Sub Category Updated Successfully"
+                    }
+                }
+            }
+        },
+        "/api/forgot-password": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Retrive forgotten password",
+                "operationId": "08073bea29a30ce2dccaab066fb7e8de",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email"
+                                ],
+                                "properties": {
+                                    "email": {}
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Mail send Successfully"
+                    }
+                }
+            }
+        },
+        "/api/reset-password": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Reset new password",
+                "operationId": "468fc10e8c2b7cf5f33e3b5beed5dc00",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "token",
+                                    "password",
+                                    "password_confirmation"
+                                ],
+                                "properties": {
+                                    "email": {},
+                                    "token": {},
+                                    "password": {},
+                                    "password_confirmation": {}
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Password changed Successfully"
+                    }
+                }
+            }
+        },
+        "/api/utility-requests": {
+            "get": {
+                "tags": [
+                    "Utility Request"
+                ],
+                "summary": "Get Utility Request List",
+                "operationId": "6270c7dd3b085468e2d827c9c7be3065",
+                "parameters": [
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Status"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get Utility Request successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Utility Request"
+                ],
+                "summary": "Create Utility Request",
+                "operationId": "a3682b09a43e89641b31cf8ee26e2243",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "type",
+                                    "name"
+                                ],
+                                "properties": {
+                                    "type": {},
+                                    "name": {}
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Utility Request created Successfully"
+                    }
+                }
+            }
+        },
+        "/api/utility-requests/{id}": {
+            "patch": {
+                "tags": [
+                    "Utility Request"
+                ],
+                "summary": "Update Utility Request",
+                "operationId": "fae0d88f144e0247b34b1e46d092cbd5",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {}
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Utility Request Updated Successfully"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
